@@ -9,6 +9,7 @@ export function Register() {
                 zIndex={"1"}
                 width={"100%"}
                 height={"50px"}
+                bg={"white"}
                 boxShadow={"rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px"}
                 padding={"8"}>
                 <Img width={"180px"} src="https://static.naukimg.com/s/4/100/i/naukri_Logo.png" />
