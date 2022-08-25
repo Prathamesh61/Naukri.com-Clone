@@ -1,0 +1,28 @@
+.slick-prev::before,
+.slick-next::before {
+    color: black;
+    background-color: #457eff;
+    /* background-color: red; */
+    opacity: 0.1;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    /* border: 1px solid black; */
+    border-radius: 50%;
+    padding: 10px;
+    z-index: 10;
+
+}
+
+.slick-prev::before {
+    margin-left: -45px;
+}
+
+.slick-prev::after,
+.slick-next::after {
+    color: red;
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 20px;
+    z-index: 10;
+
+}
