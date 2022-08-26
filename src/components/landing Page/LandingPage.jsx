@@ -1,6 +1,9 @@
 import { Box, Button, Center, Container, Divider, Heading, HStack, Img, Input, Select, SimpleGrid, Slide, Text, VStack } from "@chakra-ui/react";
-import { Footer } from "../Footer";
+import { Link } from "react-router-dom";
+import { FooterHome } from "../FooterHome";
+import { FooterMain } from "../FooterMain";
 import { Navbar } from "../Navbar";
+
 import { SliderComponent, SliderComponentFeatured, SliderTopCompanies, SliderTrendingLanding } from "./SliderComponent";
 
 export function InterviewQuestions(props) {
@@ -247,18 +250,20 @@ export function LandingPage() {
             jobs: "1.6k+"
         },
     ]
-    
+
+
     return (
         <Container bg={"#ffffff"} maxW="auto">
             <Navbar />
+
             {/* first container start */}
-            <Container bg={"#f8f9ff"} position="relative" maxW={"100%"} centerContent>
-                <Heading as={"h1"} margin="2">Find your dream job now</Heading>
+            <Container bg={"#f8f9ff"} zIndex={"0"} position="relative" maxW={"100%"} centerContent>
+                <Heading as={"h1"} marginTop="40px">Find your dream job now</Heading>
                 <Text margin={"2"}>5 lakh+ jobs for you to explore</Text>
                 <br />
                 <br />
                 <br />
-                <Box boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"} position={"absolute"} top="130" borderRadius={"120px"} border={"1px solid white"} width={"60%"} bg="#ffffff" paddingX={"4"} paddingY={"3"} justifyContent={"space-evenly"} alignItems={"center"}>
+                <Box boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"} position={"absolute"} top="150" borderRadius={"120px"} border={"1px solid white"} width={"60%"} bg="#ffffff" paddingX={"4"} paddingY={"3"} justifyContent={"space-evenly"} alignItems={"center"}>
                     <HStack >
                         <img padding={"1"} alt="search" width={"20"} src="https://cdn-icons-png.flaticon.com/512/54/54481.png" />
                         <Input variant={"unstyled"} placeholder="Enter skills / designations / companies" type={"text"} />
@@ -289,7 +294,7 @@ export function LandingPage() {
                         <Text fontSize={"16px"} fontWeight={"700"} >Get contacted by top companies hiring on Naukri!</Text>
                         <Text fontSize={"16px"} >Your chance to build that dream career is here</Text>
                     </VStack>
-                    <Button bg={"#ff7555"} borderRadius="50px" paddingX={"20px"} paddingY={"15px"} fontSize={"16px"} color="white" >Register Now</Button>
+                    <Link to="/register"><Button bg={"#ff7555"} borderRadius="50px" paddingX={"20px"} paddingY={"15px"} fontSize={"16px"} color="white" >Register Now</Button></Link>
                 </HStack>
             </Container>
             {/* second Conainer end */}
@@ -495,7 +500,7 @@ export function LandingPage() {
             {/* career banner end*/}
             <br /><br /><br />
             <Divider color={"black"} />
-            <Footer />
+            <FooterHome />
             <br /><br />
         </Container >
 

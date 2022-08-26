@@ -18,7 +18,7 @@
 
 .slick-prev::after,
 .slick-next::after {
-    color: red;
+    /* color: red; */
     background-color: black;
     border: 1px solid black;
     border-radius: 50%;
