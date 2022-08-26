@@ -1,6 +1,6 @@
 import { Box, Container, Divider, HStack, Img, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 
-export function Footer() {
+export function FooterHome() {
     return (
         <Container maxW={"auto"} width="-webkit-fit-content" centerContent>
             <HStack padding={"50px"} align={"center"} width="92%">
@@ -70,6 +70,8 @@ export function Footer() {
                     <Img width={"60%"} src="https://static.naukimg.com/s/0/0/i/new-homepage/footer-logos/jobhai.png" alt=""></Img>
                 </HStack>
             </HStack>
+
         </Container >
+
     )
 }
