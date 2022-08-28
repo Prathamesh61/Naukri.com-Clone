@@ -1,23 +1,62 @@
 import { Box, Button, Checkbox, Container, Divider, Grid, HStack, Img, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { getJobs } from "./api";
 import { FooterMain } from "./FooterMain";
 import { Navbar } from "./Navbar";
+import { Pagination } from "./pagination";
 import { SingleJObTemplate } from "./singleJobTemplate";
 
 export function JobSearch() {
+    const navigate = useNavigate()
+    const [data, setData] = useState();
+    const [searchParams, setSearchParams] = useSearchParams();
+    const initial = Number(searchParams.get("page") || 1);
+    const [page, setPage] = useState(initial)
+
+    useEffect(() => {
+        handlegetJobs()
+        setSearchParams({ page })
+    }, [page])
+
+    let queries = JSON.parse(localStorage.getItem("inputValuesSearchParams"))
+    const handlegetJobs = () => {
+        let count = 0;
+        getJobs({
+            page: page,
+            limit: 10,
+            experience: queries.experience,
+            location: queries.location,
+            q: queries.q
+        })
+            .then((res) => {
+
+                console.log(res.data);
+                setData(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        count++
+        console.log(queries, count);
+    };
+    const towardsJobData = (id) => {
+        navigate(`/jobDetail/${id}`)
+    }
+
     return (
-        <Container bg={"#f8f9ff"} maxW={"100%"}>
+        <Container bg={"#f8f9ff"} maxW={"100%"} >
             <Navbar /><br />
-            <HStack bg={"white"} paddingX={"15"} paddingY={"3"} width={"100%"} margin={"auto"} border={"1px solid red"} justifyContent={"space-between"} alignItems={"center"}>
-                <HStack  >
+            <HStack bg={"white"} paddingX={"20"} paddingY={"3"} width={"100%"} margin={"auto"} justifyContent={"space-between"} alignItems={"center"}>
+                <HStack >
                     <Img width={"30px"} src="https://static.naukimg.com/s/7/109/assets/images/qsb.e037c49a.png" alt="searchkeywords" />
                     <Text fontSize={"15px"} color={"blue"}>Showing jobs for '{ }'</Text>
                 </HStack>
                 <Button bg={"#457eff"} paddingX={"20px"} paddingY={"10px"} fontSize={"15px"}> Save as Alert</Button>
             </HStack>
-            <Grid padding={"10"} width={"90%"} gridTemplateColumns={"20% 50% 30%"} gap={"20px"} border={"1px solid red"} margin={"auto"}>
-                <VStack border={"1px solid red"} justifyContent={"flex-start"} alignItems={"flex-start"} spacing={"1"}>
+            <Grid padding={"10"} width={"90%"} gridTemplateColumns={"20% 50% 30%"} gap={"20px"} margin={"auto"}>
+                <VStack justifyContent={"flex-start"} alignItems={"flex-start"} spacing={"1"}>
                     <Box boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
-                        border={"1px solid red"}
                         width={"100%"}
                         bg="#ffffff"
                         borderRadius={"5px"}
@@ -29,7 +68,6 @@ export function JobSearch() {
                         </HStack>
                     </Box>
                     <Box boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
-                        border={"1px solid red"}
                         width={"100%"}
                         bg="#ffffff"
                         borderRadius={"5px"}
@@ -45,7 +83,6 @@ export function JobSearch() {
                         </VStack>
                     </Box>
                     <Box boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
-                        border={"1px solid red"}
                         width={"100%"}
                         bg="#ffffff"
                         borderRadius={"5px"}
@@ -61,35 +98,32 @@ export function JobSearch() {
                             <Checkbox fontSize={"15px"}>Bengaluru</Checkbox>
                         </VStack>
                     </Box>
-
-
                 </VStack>
                 <VStack>
-                    <Box boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
-                        border={"1px solid red"}
+                    <Box
                         maxW={"100%"}
-                        width={"fit-content"} bg="#ffffff"
+                        width={"fit-content"}
                         borderRadius={"10px"}
                         paddingX={"1"}
                         paddingY={"1"} >
                         <VStack>
-
-                            <SingleJObTemplate />
-                            <SingleJObTemplate />
-                            <SingleJObTemplate />
-                            <SingleJObTemplate />
-                            <SingleJObTemplate />
-                            <SingleJObTemplate />
-                            <SingleJObTemplate />
-                            <SingleJObTemplate />
-                            <SingleJObTemplate />
-
+                            {data && data.map((item) => <SingleJObTemplate key={item.id}
+                                JobTitle={item.JobTitle}
+                                JobSalary={item.JobSalary}
+                                JobExperienceRequired={item.JobExperienceRequired}
+                                KeySkills={item.KeySkills}
+                                Location={item.Location}
+                                Role={item.Role}
+                                towardsJobData={() => towardsJobData(item.id)}
+                                Industry={item.Industry} />)}
+                            <Box padding={"3"}>
+                                <Pagination total={10} current={page} onChange={(value) => setPage(value)} />
+                            </Box>
                         </VStack>
                     </Box>
                 </VStack>
                 <VStack>
                     <Box boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
-                        border={"1px solid red"}
                         maxW={"100%"}
                         width={"fit-content"} bg="#ffffff"
                         borderRadius={"5px"}
@@ -114,7 +148,7 @@ export function JobSearch() {
                         </VStack>
                     </Box>
                     <Box boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
-                        border={"1px solid red"}
+
                         maxW={"100%"}
                         width={"80%"} bg="#ffffff"
                         borderRadius={"5px"}

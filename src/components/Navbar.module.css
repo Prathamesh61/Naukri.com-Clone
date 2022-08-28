@@ -60,7 +60,7 @@
 
 
 
-span:hover {
+.spanHead:hover {
   border-bottom: 4px solid #4a90e2;
   transition: 0.2s;
   background-color: #f5f5f5;
