@@ -7,15 +7,26 @@ import { Navbar } from "./Navbar";
 import { Pagination } from "./pagination";
 import { SingleJObTemplate } from "./singleJobTemplate";
 
+
+const initial = {
+    Mumbai: "",
+    Delhi: "",
+    Hyderabad: "",
+    Chennai: "",
+    Bengaluru: ""
+}
+
 export function JobSearch() {
     const navigate = useNavigate()
     const [data, setData] = useState();
     const [searchParams, setSearchParams] = useSearchParams();
     const initial = Number(searchParams.get("page") || 1);
     const [page, setPage] = useState(initial)
+    const [location, setLocation] = useState(initial);
+    // const [x,setX] = useState("")
 
     useEffect(() => {
-        handlegetJobs()
+        handlegetJobs();
         setSearchParams({ page })
     }, [page])
 
@@ -30,19 +41,28 @@ export function JobSearch() {
             q: queries.q
         })
             .then((res) => {
-
                 console.log(res.data);
                 setData(res.data);
             })
             .catch((err) => {
                 console.log(err);
             });
-        count++
-        console.log(queries, count);
     };
     const towardsJobData = (id) => {
         navigate(`/jobDetail/${id}`)
     }
+    const handle = (e) => {
+        const { name, value, type, checked } = e.target;
+        const val = type === "checkbox" ? checked : value;
+        console.log(val, "val")
+        setLocation({
+            ...location,
+            [name]: val
+        });
+        // if (val == true) {
+        //     setX(e.target.name);
+        //   }
+    };
 
     return (
         <Container bg={"#f8f9ff"} maxW={"100%"} >
@@ -50,7 +70,7 @@ export function JobSearch() {
             <HStack bg={"white"} paddingX={"20"} paddingY={"3"} width={"100%"} margin={"auto"} justifyContent={"space-between"} alignItems={"center"}>
                 <HStack >
                     <Img width={"30px"} src="https://static.naukimg.com/s/7/109/assets/images/qsb.e037c49a.png" alt="searchkeywords" />
-                    <Text fontSize={"15px"} color={"blue"}>Showing jobs for '{ }'</Text>
+                    <Text fontSize={"15px"} color={"blue"}>Showing jobs for '{queries.q }'</Text>
                 </HStack>
                 <Button bg={"#457eff"} paddingX={"20px"} paddingY={"10px"} fontSize={"15px"}> Save as Alert</Button>
             </HStack>
@@ -91,11 +111,25 @@ export function JobSearch() {
                         <VStack padding={"2"} justifyContent={"flex-start"} alignItems={"flex-start"}>
                             <Text fontWeight={"500"} fontSize={"15px"}> Location</Text>
                             <Divider />
-                            <Checkbox fontSize={"15px"}>Mumbai</Checkbox>
-                            <Checkbox fontSize={"15px"}>Delhi</Checkbox>
-                            <Checkbox fontSize={"15px"}>Hyderabad</Checkbox>
-                            <Checkbox fontSize={"15px"}>Chennai</Checkbox>
-                            <Checkbox fontSize={"15px"}>Bengaluru</Checkbox>
+                            <Checkbox value={location.Mumbai} onChange={handle} name="Mumbai" fontSize={"15px"}>Mumbai</Checkbox>
+                            <Checkbox value={location.Delhi} onChange={handle} name="Delhi" fontSize={"15px"}>Delhi</Checkbox>
+                            {/* <Checkbox value={location.Hyderabad} onChange={handle} name="Hyder" fontSize={"15px"}>Hyderabad</Checkbox>
+                            <Checkbox value={location.Chennai} onChange={handle} name="" fontSize={"15px"}>Chennai</Checkbox>
+                            <Checkbox value={location.Bengaluru} onChange={handle} name="" fontSize={"15px"}>Bengaluru</Checkbox> */}
+                        </VStack>
+                    </Box>
+                    <Box boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
+                        width={"100%"}
+                        bg="#ffffff"
+                        borderRadius={"5px"}
+                        paddingX={"1"}
+                        paddingY={"1"}>
+                        <VStack padding={"2"} justifyContent={"flex-start"} alignItems={"flex-start"}>
+                            <Text fontWeight={"500"} fontSize={"15px"}> Sort By</Text>
+                            <Divider />
+                            <Checkbox fontSize={"15px"}>Role</Checkbox>
+                            <Checkbox fontSize={"15px"}>Industry</Checkbox>
+                            <Checkbox fontSize={"15px"}>Salary</Checkbox>
                         </VStack>
                     </Box>
                 </VStack>

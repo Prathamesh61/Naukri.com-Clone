@@ -2,9 +2,9 @@ import { Box, Container, HStack, Img, Text } from "@chakra-ui/react"
 export function SingleJObTemplate(props) {
     const { JobTitle, JobSalary, Role, JobExperienceRequired, KeySkills, Location, Industry, towardsJobData } = props;
     let str = { KeySkills };
-    console.log(typeof KeySkills)
+    // console.log(typeof KeySkills)
     let arr = typeof str === 'string' ? str.split('| ') : '';
-    console.log(arr);
+    // console.log(arr);
     return (
         <Container maxW={"700px"} pointer onClick={towardsJobData}>
             <Box bg={"white"} boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"} borderRadius={"5px"} padding={"7"} width={"100%"}>
@@ -30,7 +30,7 @@ export function SingleJObTemplate(props) {
                 </HStack>
                 <HStack paddingY={"1"}>
                     <Img width={"15px"} src="https://i.ibb.co/K2PwSb8/google-docs.png" alt="skills" />
-                    <Text fontWeight={"400"} fontSize={"12px"}>{arr && arr.join(" - ")}</Text>
+                    <Text fontWeight={"400"} fontSize={"12px"}>{KeySkills}</Text>
                 </HStack>
                 <HStack margin={"1"} bg={"#eeeeee"} paddingX="0.5" width={"fit-content"}>
                     <Img width={"10px"} src="https://i.ibb.co/3rppz9x/anti-clockwise.png" alt="days" />

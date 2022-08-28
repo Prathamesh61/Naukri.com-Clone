@@ -82,7 +82,7 @@ export function Register() {
                 height={"50px"}
                 boxShadow={"rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px"}
                 padding={"8"}>
-                <Img width={"180px"} src="https://static.naukimg.com/s/4/100/i/naukri_Logo.png" />
+                <Link to="/"><Img width={"180px"} src="https://static.naukimg.com/s/4/100/i/naukri_Logo.png" /></Link>
                 <HStack >
                     <Text fontWeight={"300"} fontSize={"16px"} >Alredy Registered ?</Text>
                     <Text fontWeight={"300"} fontSize={"16px"} color="blue">Login here</Text>

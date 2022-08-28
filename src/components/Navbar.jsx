@@ -69,6 +69,8 @@ export function Navbar() {
             return elem.email === email && elem.password === password;
         })
 
+        
+
         if (filter.length > 0) {
             return true;
         } else {
