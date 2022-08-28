@@ -1,11 +1,17 @@
 import { Container, Box, Input, Divider, HStack, Select, Button, Center, Text, VStack, Img, Grid, Slider, SliderThumb, SliderTrack, SliderFilledTrack, Tag, } from "@chakra-ui/react"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "./Context/AuthContext";
 import { FooterMain } from "./FooterMain"
 import { Navbar } from "./Navbar"
 
+let initialData = {
+    experience: "",
+    location: "",
+    q: ""
+}
 export function ProfilePage() {
+    const [formData, setFormData] = useState(initialData);
     let navigate = useNavigate();
     let userData = JSON.parse(localStorage.getItem("CurrentUser")) || [];
     // console.log(userData);
@@ -14,16 +20,26 @@ export function ProfilePage() {
     if (!isAuth) {
         <Navigate to="/register" />
     }
-    let searchValues = {
-        experience: 3,
-        location: "mumbai",
-        q: "sales"
+    // let searchValues = {
+    //     experience: 3,
+    //     location: "mumbai",
+    //     q: "sales"
+    // }
+
+    const handle = (e) => {
+        const { name: key, value } = e.target;
+        setFormData({
+            ...formData,
+            [key]: value
+        });
+    }
+    console.log(formData)
+    const searchjobs = () => {
+        localStorage.setItem("inputValuesSearchParams", JSON.stringify(formData));
+        navigate("/searchPage");
+        setFormData(initialData)
     }
 
-    const searchjobs = () => {
-        localStorage.setItem("inputValuesSearchParams", JSON.stringify(searchValues));
-        navigate("/searchPage");
-    }
 
     return (
         <Container bg={"#f8f9ff"} maxW={"100%"} >
@@ -46,15 +62,15 @@ export function ProfilePage() {
                                 alignItems={"center"}>
                                 <HStack >
                                     <Img padding={"1"} alt="search" width={"20px"} src="https://cdn-icons-png.flaticon.com/512/54/54481.png" />
-                                    <Input variant={"unstyled"} placeholder="Enter skills / designations / companies" type={"text"} />
+                                    <Input variant={"unstyled"} name="q" value={formData.q} onChange={handle} placeholder="Enter skills / designations / companies" type={"text"} />
                                     <Divider orientation="vertical" height={"8"} color={"black"} />
-                                    <Select color={"#8292b4"} placeholder='Select Experience' variant={"unstyled"}>
-                                        <option value='1'>Option 1</option>
-                                        <option value='2'>Option 2</option>
-                                        <option value='3'>Option 3</option>
+                                    <Select color={"#8292b4"} placeholder='Select Experience' value={formData.experience} onChange={handle} name="experience" variant={"unstyled"}>
+                                        <option value='1'>1</option>
+                                        <option value='2'>2</option>
+                                        <option value='3'>3</option>
                                     </Select>
                                     <Divider orientation="vertical" height={"8"} color={"black"} />
-                                    <Input variant={"unstyled"} placeholder="Enter Loaction" type={"text"} />
+                                    <Input variant={"unstyled"} name="location" onChange={handle} value={formData.location} placeholder="Enter Loaction" type={"text"} />
                                     <Button borderRadius={"0"} onClick={searchjobs} bg={"#457eff"} paddingX={"60px"} paddingY={"15px"} fontSize={"18px"} color="white">Search</Button>
                                 </HStack>
                             </Box>

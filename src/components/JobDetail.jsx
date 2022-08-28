@@ -24,8 +24,8 @@ const getData = async (id) => {
 export function JobDetail() {
     const { isAuth } = useContext(AuthContext);
     const toast = useToast()
-    const [data, setData] = useState({});
     const [isModalVisible, setIsModalVisible] = useState(false)
+    const [data, setData] = useState({});
     const params = useParams();
     console.log(params);
     useEffect(() => {

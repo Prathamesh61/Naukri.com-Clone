@@ -92,13 +92,7 @@ export function FooterMain() {
                         <a href="null"><td>Companies salaries</td></a><br />
                         <a href="null"><td>Follow us</td></a><br />
                         <div className={style.fotr_col_1}>
-                            <tbody className={style.share_icon}>
-                                <td>
-                                    <img src="https://image.flaticon.com/icons/png/128/1384/1384053.png" alt="facebook" />
-                                </td>
-                                <td><img src="https://image.flaticon.com/icons/png/128/1409/1409937.png" alt="twitter" /></td>
-                                <td><img src="https://image.flaticon.com/icons/png/128/3256/3256016.png" alt="linkedin" /></td>
-                            </tbody>
+                           
                         </div>
                     </div>
                 </div>
