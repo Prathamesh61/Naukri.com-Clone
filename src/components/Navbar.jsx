@@ -92,7 +92,7 @@ export function Navbar() {
                         <Link to="/"><img src="https://static.naukimg.com/s/4/100/i/naukri_Logo.png" alt="logo" /></Link>
                     </div>
                     <li className={styles.drop_one}>
-                        <span>JOBS</span>
+                        <span className={styles.spanHead}>JOBS</span>
                         <div className={styles.menu_experiment}>
                             <div className={styles.menu_one}>
                                 <ul>
@@ -114,7 +114,7 @@ export function Navbar() {
                         </div>
                     </li>
                     <li className={styles.drop_two}>
-                        <Link to="/recruiter">   <span>RECRUITERS</span></Link>
+                        <Link to="/recruiter">   <span className={styles.spanHead}>RECRUITERS</span></Link>
                         <div className={styles.menu_experiment}>
                             <div className={styles.menu_two}>
                                 <ul>
@@ -126,7 +126,7 @@ export function Navbar() {
                         </div>
                     </li>
                     <li className={styles.drop_three}>
-                        <span>COMPANIES</span>
+                        <span className={styles.spanHead}>COMPANIES</span>
                         <div className={styles.menu_experiment}>
                             <div className={styles.menu_three}>
                                 <ul>
@@ -142,7 +142,7 @@ export function Navbar() {
                         </div>
                     </li>
                     <li className={styles.drop_four}>
-                        <span>TOOLS</span>
+                        <span className={styles.spanHead}>TOOLS</span>
                         <div className={styles.menu_experiment}>
                             <div className={styles.menu_four}>
                                 <ul>
@@ -155,7 +155,7 @@ export function Navbar() {
                         </div>
                     </li>
                     <li className={styles.drop_five}>
-                        <span>SERVICES</span>
+                        <span className={styles.spanHead}>SERVICES</span>
                         <div className={styles.menu_experiment}>
                             <div className={styles.menu_five}>
                                 <ul>
@@ -198,7 +198,7 @@ export function Navbar() {
                         </div>
                     </li>
                     <li className={styles.drop_six}>
-                        <span>MORE</span>
+                        <span className={styles.spanHead}>MORE</span>
                         <div className={styles.menu_experiment}>
                             <div className={styles.menu_six}>
                                 <ul>
@@ -268,7 +268,7 @@ export function Navbar() {
                         </div>
                     </li>
                     <li className={styles.drop_four}>
-                        <span>FOR EMPLOYERS</span>
+                        <span className={styles.spanHead}>FOR EMPLOYERS</span>
                         <div className={styles.menu_experiment}>
                             <div style={{ marginLeft: -70, paddingRight: 85, paddingLeft: 20 }} className={styles.menu_four}>
                                 <ul>
